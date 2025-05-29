@@ -1,0 +1,23 @@
+class: Tv
+table: tv
+fields:
+  ### The title of the TV entry.
+  title: String
+
+  ### The main URL of the TV entry.
+  url: String
+
+  ### The type of the TV entry (e.g., Shows, Channel, etc.).
+  type: Type
+
+  ### The related movies/shows.
+  shows: List<Movie>?
+
+  ### Optional URL for the channels.
+  channelsUrl: String?
+
+  ### The thumbnail image (binary data).
+  thumbnail: ByteData?
+
+  ### The URL of the thumbnail image.
+  thumbnailUrl: String

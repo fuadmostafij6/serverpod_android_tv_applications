@@ -1,0 +1,7 @@
+
+enum: Type
+serialized: byName
+default: channel
+values:
+  - shows
+  - channel

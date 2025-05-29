@@ -1,0 +1,15 @@
+{
+  "moduleName": "tv_applications",
+  "tables": [],
+  "installedModules": [
+    {
+      "module": "serverpod",
+      "version": "20240516151843329"
+    },
+    {
+      "module": "tv_applications",
+      "version": "20250417174452881"
+    }
+  ],
+  "migrationApiVersion": 1
+}

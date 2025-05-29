@@ -1,0 +1,15 @@
+movie:
+  - createMovie:
+  - deleteMovie:
+  - updateMovie:
+  - getAllMovie:
+tv:
+  - createTv:
+  - deleteTv:
+  - updateTv:
+  - getAllTv:
+userManager:
+  - isSignIn:
+  - updateScopeWithAdmin:
+userAuthAdmin:
+  - getUserInfo:

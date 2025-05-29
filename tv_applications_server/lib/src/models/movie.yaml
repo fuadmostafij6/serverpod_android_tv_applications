@@ -1,0 +1,15 @@
+class: Movie
+table: movie
+fields:
+
+  ### The title of the movie.
+  title: String?
+
+  ### The URL of the movie.
+  url: String?
+
+  ### The thumbnail as binary data.
+  thumbnail: ByteData?
+
+  ### The URL of the thumbnail.
+  thumbnailUrl: String?

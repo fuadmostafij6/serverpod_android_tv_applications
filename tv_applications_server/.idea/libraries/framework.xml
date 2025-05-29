@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="framework">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/.fvm/versions/3.29.2/bin/cache/downloads/storage.googleapis.com/flutter_infra_release/flutter/18b71d647a292a980abb405ac7d16fe1f0b20434/darwin-x64/framework.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
