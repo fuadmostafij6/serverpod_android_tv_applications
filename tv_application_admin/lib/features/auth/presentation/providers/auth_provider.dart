@@ -15,7 +15,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future<bool> login(String email, String password) async {
     try {
-      var userData = await client.userAuthAdmin.getUserInfo(email);
+      var userData = await client.userManager.getUserInfo(email);
       
       if (userData == null) {
         throw Exception('User not found');

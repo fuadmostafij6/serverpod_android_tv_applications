@@ -198,6 +198,24 @@ class Endpoints extends _i1.EndpointDispatch {
           ) async =>
               (endpoints['userManager'] as _i4.UserManager).isSignIn(session),
         ),
+        'getUserInfo': _i1.MethodConnector(
+          name: 'getUserInfo',
+          params: {
+            'email': _i1.ParameterDescription(
+              name: 'email',
+              type: _i1.getType<String>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userManager'] as _i4.UserManager).getUserInfo(
+            session,
+            params['email'],
+          ),
+        ),
         'updateScopeWithAdmin': _i1.MethodConnector(
           name: 'updateScopeWithAdmin',
           params: {
@@ -223,12 +241,22 @@ class Endpoints extends _i1.EndpointDispatch {
       name: 'userAuthAdmin',
       endpoint: endpoints['userAuthAdmin']!,
       methodConnectors: {
-        'getUserInfo': _i1.MethodConnector(
-          name: 'getUserInfo',
+        'listUsers': _i1.MethodConnector(
+          name: 'listUsers',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userAuthAdmin'] as _i5.UserAuthAdmin)
+                  .listUsers(session),
+        ),
+        'getUserById': _i1.MethodConnector(
+          name: 'getUserById',
           params: {
-            'email': _i1.ParameterDescription(
-              name: 'email',
-              type: _i1.getType<String>(),
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int>(),
               nullable: false,
             )
           },
@@ -236,11 +264,47 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['userAuthAdmin'] as _i5.UserAuthAdmin).getUserInfo(
+              (endpoints['userAuthAdmin'] as _i5.UserAuthAdmin).getUserById(
             session,
-            params['email'],
+            params['userId'],
           ),
-        )
+        ),
+        'blockUser': _i1.MethodConnector(
+          name: 'blockUser',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userAuthAdmin'] as _i5.UserAuthAdmin).blockUser(
+            session,
+            params['userId'],
+          ),
+        ),
+        'unblockUser': _i1.MethodConnector(
+          name: 'unblockUser',
+          params: {
+            'userId': _i1.ParameterDescription(
+              name: 'userId',
+              type: _i1.getType<int>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['userAuthAdmin'] as _i5.UserAuthAdmin).unblockUser(
+            session,
+            params['userId'],
+          ),
+        ),
       },
     );
     modules['serverpod_auth'] = _i8.Endpoints()..initializeEndpoints(server);

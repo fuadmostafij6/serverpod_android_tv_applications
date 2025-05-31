@@ -18,6 +18,7 @@ import 'package:tv_application_admin/features/dashboard/presentation/pages/analy
 import 'package:tv_application_admin/features/dashboard/presentation/pages/support_page.dart';
 import 'package:tv_application_admin/features/auth/presentation/providers/auth_provider.dart';
 import 'package:tv_application_admin/features/splash/presentation/pages/splash_page.dart';
+import 'package:tv_application_admin/features/dashboard/presentation/providers/admin_users_provider.dart';
 
 
 
@@ -58,6 +59,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => AdminUsersProvider()),
       ],
       child: const MyApp(),
     ),
@@ -87,7 +89,7 @@ final _router = GoRouter(
       },
     ),
     ShellRoute(
-      builder: (context, state, child) => const DashboardPage(),
+      builder: (context, state, child) => DashboardPage(child: child),
       routes: [
         GoRoute(
           path: '/dashboard',

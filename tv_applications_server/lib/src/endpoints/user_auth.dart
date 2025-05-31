@@ -13,12 +13,24 @@ class UserManager extends Endpoint{
 
     return isSignedIn;
   }
+   Future<UserInfo?> getUserInfo(Session session, String email) async {
+
+    // final authenticationInfo = await session.authenticated;
+    // final userId = authenticationInfo?.userId;
+    final user =  await Users.findUserByEmail(session, email);
+    if( user != null) {
+      return user;
+    }
+
+    return user;
+
+  }
   Future<bool> updateScopeWithAdmin(Session session, int targetUserId) async {
 
     // final authenticationInfo = await session.authenticated;
     // final userId = authenticationInfo?.userId;
     print("User ID: $targetUserId");
-    session.log("${targetUserId?? 'No user ID found'}", level: LogLevel.info);
+    session.log("$targetUserId", level: LogLevel.info);
    final user =  await Users.updateUserScopes(session, targetUserId, {Scope.admin});
    if( user != null) {
      return true;

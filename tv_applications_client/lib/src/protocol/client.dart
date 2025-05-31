@@ -98,6 +98,13 @@ class EndpointUserManager extends _i1.EndpointRef {
         {},
       );
 
+  _i2.Future<_i5.UserInfo?> getUserInfo(String email) =>
+      caller.callServerEndpoint<_i5.UserInfo?>(
+        'userManager',
+        'getUserInfo',
+        {'email': email},
+      );
+
   _i2.Future<bool> updateScopeWithAdmin(int targetUserId) =>
       caller.callServerEndpoint<bool>(
         'userManager',
@@ -113,11 +120,30 @@ class EndpointUserAuthAdmin extends _i1.EndpointRef {
   @override
   String get name => 'userAuthAdmin';
 
-  _i2.Future<_i5.UserInfo?> getUserInfo(String email) =>
+  _i2.Future<List<_i5.UserInfo>> listUsers() =>
+      caller.callServerEndpoint<List<_i5.UserInfo>>(
+        'userAuthAdmin',
+        'listUsers',
+        {},
+      );
+
+  _i2.Future<_i5.UserInfo?> getUserById(int userId) =>
       caller.callServerEndpoint<_i5.UserInfo?>(
         'userAuthAdmin',
-        'getUserInfo',
-        {'email': email},
+        'getUserById',
+        {'userId': userId},
+      );
+
+  _i2.Future<void> blockUser(int userId) => caller.callServerEndpoint<void>(
+        'userAuthAdmin',
+        'blockUser',
+        {'userId': userId},
+      );
+
+  _i2.Future<void> unblockUser(int userId) => caller.callServerEndpoint<void>(
+        'userAuthAdmin',
+        'unblockUser',
+        {'userId': userId},
       );
 }
 
