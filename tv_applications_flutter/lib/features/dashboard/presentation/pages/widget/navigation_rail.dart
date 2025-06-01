@@ -143,27 +143,20 @@ class _NavigationFlutterState extends State<NavigationFlutter> {
                               children: [
                                 const SizedBox(height: 10),
                                 Container(
+                                  width: railIconsSizeHeight,
                                   height: railIconsSizeHeight,
-                                  width: railIconsSizeWidth,
-                                  decoration: BoxDecoration(
-                                    color: isSelected == index
-                                        ? activeRailColors
-                                        : inActiveRailColors,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(5)),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8),
 
-                                    child:  Center(
-                                      child: PhosphorIcon(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    // color: Colors.white,
+                                    color: isSelected ==index? activeRailColors: inActiveRailColors,
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child:PhosphorIcon(
                                         railIcon[index],
-                                        color: isSelected == index
-                                            ? Colors.white
-                                            : Colors.grey,
-                                        size: railIconSize,
-                                      ),
-                                    ),
+                                        color: isSelected ==index?Colors.black: Colors.white,
+                                      )
                                   ),
                                 ),
                                 const SizedBox(height: 5),
@@ -175,7 +168,7 @@ class _NavigationFlutterState extends State<NavigationFlutter> {
                                       : railLab![index],
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: Colors.black,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ],
@@ -232,15 +225,26 @@ class _NavigationFlutterState extends State<NavigationFlutter> {
                         ),
                         const SizedBox(height: 5),
                         InkWell(
-                          onTap: widget.profileClick,
-                          child: SizedBox(
-                            width: 30,
-                            height: 30,
+                          onTap: (){
+                            setState(() {
+                             isSelected = 3;
+                            });
+                            widget.profileClick;
+                          },
+                          child: Container(
+                            width: railIconsSizeHeight,
+                            height: railIconsSizeHeight,
+
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                             // color: Colors.white,
+                              color: isSelected ==3? activeRailColors: inActiveRailColors,
+                            ),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child:PhosphorIcon(
                                   profileImage!,
-                                  color: activeRailColors,
+                                  color: isSelected ==3?Colors.black: Colors.white,
                                 )
                             ),
                           ),

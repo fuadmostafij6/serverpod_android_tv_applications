@@ -174,6 +174,24 @@ class Endpoints extends _i1.EndpointDispatch {
             params['tv'],
           ),
         ),
+        'insertMediaList': _i1.MethodConnector(
+          name: 'insertMediaList',
+          params: {
+            'mediaList': _i1.ParameterDescription(
+              name: 'mediaList',
+              type: _i1.getType<List<_i7.Media>>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['media'] as _i3.MediaEndpoint).insertMediaList(
+            session,
+            params['mediaList'],
+          ),
+        ),
         'getAllTv': _i1.MethodConnector(
           name: 'getAllTv',
           params: {},

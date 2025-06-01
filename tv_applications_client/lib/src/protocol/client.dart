@@ -77,6 +77,13 @@ class EndpointMedia extends _i1.EndpointRef {
         {'tv': tv},
       );
 
+  _i2.Future<void> insertMediaList(List<_i4.Media> mediaList) =>
+      caller.callServerEndpoint<void>(
+        'media',
+        'insertMediaList',
+        {'mediaList': mediaList},
+      );
+
   _i2.Future<List<_i4.Media>> getAllTv() =>
       caller.callServerEndpoint<List<_i4.Media>>(
         'media',

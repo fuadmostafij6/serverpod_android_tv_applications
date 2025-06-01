@@ -21,6 +21,7 @@ class ShadcnButton extends StatelessWidget {
   final ButtonSize size;
   final bool isLoading;
   final bool isFullWidth;
+  final double? value;
 
   const ShadcnButton({
     super.key,
@@ -29,7 +30,7 @@ class ShadcnButton extends StatelessWidget {
     this.variant = ButtonVariant.primary,
     this.size = ButtonSize.md,
     this.isLoading = false,
-    this.isFullWidth = false,
+    this.isFullWidth = false, this.value,
   });
 
   @override
@@ -43,6 +44,7 @@ class ShadcnButton extends StatelessWidget {
             width: 20,
             child: CircularProgressIndicator(
               strokeWidth: 2,
+              value: value,
               valueColor: AlwaysStoppedAnimation<Color>(
                 variant == ButtonVariant.primary
                     ? colorScheme.onPrimary

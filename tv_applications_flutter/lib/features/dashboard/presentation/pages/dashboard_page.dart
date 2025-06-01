@@ -16,12 +16,14 @@ class _DashboardPageState extends State<DashboardPage> {
   final List<String> bottomLabel = <String>['Info', 'Person'];
   final List<IconData> bottomIcons = <IconData>[PhosphorIconsBold.info, PhosphorIconsBold.person];
 
-  final List<String> railLabel = <String>['Home', 'List'];
-  final List<IconData> railIcons = <IconData>[PhosphorIconsBold.house, PhosphorIconsBold.medalMilitary];
+  final List<String> railLabel = <String>['TV', 'Movies', 'Series'];
+  final List<IconData> railIcons = <IconData>[PhosphorIconsBold.monitor, PhosphorIconsBold.filmReel,  PhosphorIconsBold.filmReel,];
 
   final List<Widget> pages = [
-    const Center(child: Text('Home', style: TextStyle(fontSize: 20))),
-    const Center(child: Text('List', style: TextStyle(fontSize: 20))),
+    const Center(child: Text('TV', style: TextStyle(fontSize: 20))),
+    const Center(child: Text('Movies', style: TextStyle(fontSize: 20))),
+    const Center(child: Text('Series', style: TextStyle(fontSize: 20))),
+    const Center(child: Text('Profile', style: TextStyle(fontSize: 20))),
   ];
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,8 @@ class _DashboardPageState extends State<DashboardPage> {
         // bottomRailLabel: bottomLabel,
         navigationRailColor: colorScheme.onPrimary,
         railLabel: railLabel,
+        railLabelActive: true,
+
         // bottomItemCount: bottomLabel.length,
        // bottomIcons: bottomIcons,
         activeColor: colorScheme.primary,

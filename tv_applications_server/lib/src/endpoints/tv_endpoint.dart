@@ -37,6 +37,23 @@ class MediaEndpoint extends Endpoint {
     await Media.db.updateRow(session, tv);
   }
 
+  Future<void> insertMediaList(Session session, List<Media> mediaList) async {
+    for (final media in mediaList) {
+      final exists = await Media.db.findFirstRow(
+        session,
+        where: (t) => t.url.equals(media.url),
+      );
+
+      if (exists == null) {
+        await Media.db.insertRow(session, media);
+      } else {
+        // Optional: Update existing or skip
+        print('Duplicate entry skipped: ${media.url}');
+      }
+    }
+  }
+
+
 
   //
   Future<List<Media>> getAllTv(Session session) async {
