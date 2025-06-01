@@ -14,8 +14,8 @@ import 'channel_category.dart' as _i2;
 import 'movie.dart' as _i3;
 import 'dart:typed_data' as _i4;
 
-abstract class Tv implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
-  Tv._({
+abstract class Media implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
+  Media._({
     this.id,
     required this.title,
     required this.url,
@@ -26,7 +26,7 @@ abstract class Tv implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     required this.thumbnailUrl,
   });
 
-  factory Tv({
+  factory Media({
     int? id,
     required String title,
     required String url,
@@ -35,10 +35,10 @@ abstract class Tv implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     String? channelsUrl,
     _i4.ByteData? thumbnail,
     required String thumbnailUrl,
-  }) = _TvImpl;
+  }) = _MediaImpl;
 
-  factory Tv.fromJson(Map<String, dynamic> jsonSerialization) {
-    return Tv(
+  factory Media.fromJson(Map<String, dynamic> jsonSerialization) {
+    return Media(
       id: jsonSerialization['id'] as int?,
       title: jsonSerialization['title'] as String,
       url: jsonSerialization['url'] as String,
@@ -54,9 +54,9 @@ abstract class Tv implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     );
   }
 
-  static final t = TvTable();
+  static final t = MediaTable();
 
-  static const db = TvRepository._();
+  static const db = MediaRepository._();
 
   @override
   int? id;
@@ -85,10 +85,10 @@ abstract class Tv implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
   @override
   _i1.Table<int?> get table => t;
 
-  /// Returns a shallow copy of this [Tv]
+  /// Returns a shallow copy of this [Media]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  Tv copyWith({
+  Media copyWith({
     int? id,
     String? title,
     String? url,
@@ -127,26 +127,26 @@ abstract class Tv implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     };
   }
 
-  static TvInclude include() {
-    return TvInclude._();
+  static MediaInclude include() {
+    return MediaInclude._();
   }
 
-  static TvIncludeList includeList({
-    _i1.WhereExpressionBuilder<TvTable>? where,
+  static MediaIncludeList includeList({
+    _i1.WhereExpressionBuilder<MediaTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<TvTable>? orderBy,
+    _i1.OrderByBuilder<MediaTable>? orderBy,
     bool orderDescending = false,
-    _i1.OrderByListBuilder<TvTable>? orderByList,
-    TvInclude? include,
+    _i1.OrderByListBuilder<MediaTable>? orderByList,
+    MediaInclude? include,
   }) {
-    return TvIncludeList._(
+    return MediaIncludeList._(
       where: where,
       limit: limit,
       offset: offset,
-      orderBy: orderBy?.call(Tv.t),
+      orderBy: orderBy?.call(Media.t),
       orderDescending: orderDescending,
-      orderByList: orderByList?.call(Tv.t),
+      orderByList: orderByList?.call(Media.t),
       include: include,
     );
   }
@@ -159,8 +159,8 @@ abstract class Tv implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
 
 class _Undefined {}
 
-class _TvImpl extends Tv {
-  _TvImpl({
+class _MediaImpl extends Media {
+  _MediaImpl({
     int? id,
     required String title,
     required String url,
@@ -180,11 +180,11 @@ class _TvImpl extends Tv {
           thumbnailUrl: thumbnailUrl,
         );
 
-  /// Returns a shallow copy of this [Tv]
+  /// Returns a shallow copy of this [Media]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  Tv copyWith({
+  Media copyWith({
     Object? id = _Undefined,
     String? title,
     String? url,
@@ -194,7 +194,7 @@ class _TvImpl extends Tv {
     Object? thumbnail = _Undefined,
     String? thumbnailUrl,
   }) {
-    return Tv(
+    return Media(
       id: id is int? ? id : this.id,
       title: title ?? this.title,
       url: url ?? this.url,
@@ -210,8 +210,8 @@ class _TvImpl extends Tv {
   }
 }
 
-class TvTable extends _i1.Table<int?> {
-  TvTable({super.tableRelation}) : super(tableName: 'tv') {
+class MediaTable extends _i1.Table<int?> {
+  MediaTable({super.tableRelation}) : super(tableName: 'media') {
     title = _i1.ColumnString(
       'title',
       this,
@@ -277,19 +277,19 @@ class TvTable extends _i1.Table<int?> {
       ];
 }
 
-class TvInclude extends _i1.IncludeObject {
-  TvInclude._();
+class MediaInclude extends _i1.IncludeObject {
+  MediaInclude._();
 
   @override
   Map<String, _i1.Include?> get includes => {};
 
   @override
-  _i1.Table<int?> get table => Tv.t;
+  _i1.Table<int?> get table => Media.t;
 }
 
-class TvIncludeList extends _i1.IncludeList {
-  TvIncludeList._({
-    _i1.WhereExpressionBuilder<TvTable>? where,
+class MediaIncludeList extends _i1.IncludeList {
+  MediaIncludeList._({
+    _i1.WhereExpressionBuilder<MediaTable>? where,
     super.limit,
     super.offset,
     super.orderBy,
@@ -297,20 +297,20 @@ class TvIncludeList extends _i1.IncludeList {
     super.orderByList,
     super.include,
   }) {
-    super.where = where?.call(Tv.t);
+    super.where = where?.call(Media.t);
   }
 
   @override
   Map<String, _i1.Include?> get includes => include?.includes ?? {};
 
   @override
-  _i1.Table<int?> get table => Tv.t;
+  _i1.Table<int?> get table => Media.t;
 }
 
-class TvRepository {
-  const TvRepository._();
+class MediaRepository {
+  const MediaRepository._();
 
-  /// Returns a list of [Tv]s matching the given query parameters.
+  /// Returns a list of [Media]s matching the given query parameters.
   ///
   /// Use [where] to specify which items to include in the return value.
   /// If none is specified, all items will be returned.
@@ -332,20 +332,20 @@ class TvRepository {
   ///   limit: 100,
   /// );
   /// ```
-  Future<List<Tv>> find(
+  Future<List<Media>> find(
     _i1.Session session, {
-    _i1.WhereExpressionBuilder<TvTable>? where,
+    _i1.WhereExpressionBuilder<MediaTable>? where,
     int? limit,
     int? offset,
-    _i1.OrderByBuilder<TvTable>? orderBy,
+    _i1.OrderByBuilder<MediaTable>? orderBy,
     bool orderDescending = false,
-    _i1.OrderByListBuilder<TvTable>? orderByList,
+    _i1.OrderByListBuilder<MediaTable>? orderByList,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.find<Tv>(
-      where: where?.call(Tv.t),
-      orderBy: orderBy?.call(Tv.t),
-      orderByList: orderByList?.call(Tv.t),
+    return session.db.find<Media>(
+      where: where?.call(Media.t),
+      orderBy: orderBy?.call(Media.t),
+      orderByList: orderByList?.call(Media.t),
       orderDescending: orderDescending,
       limit: limit,
       offset: offset,
@@ -353,7 +353,7 @@ class TvRepository {
     );
   }
 
-  /// Returns the first matching [Tv] matching the given query parameters.
+  /// Returns the first matching [Media] matching the given query parameters.
   ///
   /// Use [where] to specify which items to include in the return value.
   /// If none is specified, all items will be returned.
@@ -370,136 +370,136 @@ class TvRepository {
   ///   orderBy: (t) => t.age,
   /// );
   /// ```
-  Future<Tv?> findFirstRow(
+  Future<Media?> findFirstRow(
     _i1.Session session, {
-    _i1.WhereExpressionBuilder<TvTable>? where,
+    _i1.WhereExpressionBuilder<MediaTable>? where,
     int? offset,
-    _i1.OrderByBuilder<TvTable>? orderBy,
+    _i1.OrderByBuilder<MediaTable>? orderBy,
     bool orderDescending = false,
-    _i1.OrderByListBuilder<TvTable>? orderByList,
+    _i1.OrderByListBuilder<MediaTable>? orderByList,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.findFirstRow<Tv>(
-      where: where?.call(Tv.t),
-      orderBy: orderBy?.call(Tv.t),
-      orderByList: orderByList?.call(Tv.t),
+    return session.db.findFirstRow<Media>(
+      where: where?.call(Media.t),
+      orderBy: orderBy?.call(Media.t),
+      orderByList: orderByList?.call(Media.t),
       orderDescending: orderDescending,
       offset: offset,
       transaction: transaction,
     );
   }
 
-  /// Finds a single [Tv] by its [id] or null if no such row exists.
-  Future<Tv?> findById(
+  /// Finds a single [Media] by its [id] or null if no such row exists.
+  Future<Media?> findById(
     _i1.Session session,
     int id, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.findById<Tv>(
+    return session.db.findById<Media>(
       id,
       transaction: transaction,
     );
   }
 
-  /// Inserts all [Tv]s in the list and returns the inserted rows.
+  /// Inserts all [Media]s in the list and returns the inserted rows.
   ///
-  /// The returned [Tv]s will have their `id` fields set.
+  /// The returned [Media]s will have their `id` fields set.
   ///
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// insert, none of the rows will be inserted.
-  Future<List<Tv>> insert(
+  Future<List<Media>> insert(
     _i1.Session session,
-    List<Tv> rows, {
+    List<Media> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.insert<Tv>(
+    return session.db.insert<Media>(
       rows,
       transaction: transaction,
     );
   }
 
-  /// Inserts a single [Tv] and returns the inserted row.
+  /// Inserts a single [Media] and returns the inserted row.
   ///
-  /// The returned [Tv] will have its `id` field set.
-  Future<Tv> insertRow(
+  /// The returned [Media] will have its `id` field set.
+  Future<Media> insertRow(
     _i1.Session session,
-    Tv row, {
+    Media row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.insertRow<Tv>(
+    return session.db.insertRow<Media>(
       row,
       transaction: transaction,
     );
   }
 
-  /// Updates all [Tv]s in the list and returns the updated rows. If
+  /// Updates all [Media]s in the list and returns the updated rows. If
   /// [columns] is provided, only those columns will be updated. Defaults to
   /// all columns.
   /// This is an atomic operation, meaning that if one of the rows fails to
   /// update, none of the rows will be updated.
-  Future<List<Tv>> update(
+  Future<List<Media>> update(
     _i1.Session session,
-    List<Tv> rows, {
-    _i1.ColumnSelections<TvTable>? columns,
+    List<Media> rows, {
+    _i1.ColumnSelections<MediaTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.update<Tv>(
+    return session.db.update<Media>(
       rows,
-      columns: columns?.call(Tv.t),
+      columns: columns?.call(Media.t),
       transaction: transaction,
     );
   }
 
-  /// Updates a single [Tv]. The row needs to have its id set.
+  /// Updates a single [Media]. The row needs to have its id set.
   /// Optionally, a list of [columns] can be provided to only update those
   /// columns. Defaults to all columns.
-  Future<Tv> updateRow(
+  Future<Media> updateRow(
     _i1.Session session,
-    Tv row, {
-    _i1.ColumnSelections<TvTable>? columns,
+    Media row, {
+    _i1.ColumnSelections<MediaTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.updateRow<Tv>(
+    return session.db.updateRow<Media>(
       row,
-      columns: columns?.call(Tv.t),
+      columns: columns?.call(Media.t),
       transaction: transaction,
     );
   }
 
-  /// Deletes all [Tv]s in the list and returns the deleted rows.
+  /// Deletes all [Media]s in the list and returns the deleted rows.
   /// This is an atomic operation, meaning that if one of the rows fail to
   /// be deleted, none of the rows will be deleted.
-  Future<List<Tv>> delete(
+  Future<List<Media>> delete(
     _i1.Session session,
-    List<Tv> rows, {
+    List<Media> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.delete<Tv>(
+    return session.db.delete<Media>(
       rows,
       transaction: transaction,
     );
   }
 
-  /// Deletes a single [Tv].
-  Future<Tv> deleteRow(
+  /// Deletes a single [Media].
+  Future<Media> deleteRow(
     _i1.Session session,
-    Tv row, {
+    Media row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.db.deleteRow<Tv>(
+    return session.db.deleteRow<Media>(
       row,
       transaction: transaction,
     );
   }
 
   /// Deletes all rows matching the [where] expression.
-  Future<List<Tv>> deleteWhere(
+  Future<List<Media>> deleteWhere(
     _i1.Session session, {
-    required _i1.WhereExpressionBuilder<TvTable> where,
+    required _i1.WhereExpressionBuilder<MediaTable> where,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.deleteWhere<Tv>(
-      where: where(Tv.t),
+    return session.db.deleteWhere<Media>(
+      where: where(Media.t),
       transaction: transaction,
     );
   }
@@ -508,12 +508,12 @@ class TvRepository {
   /// will return the count of all rows in the table.
   Future<int> count(
     _i1.Session session, {
-    _i1.WhereExpressionBuilder<TvTable>? where,
+    _i1.WhereExpressionBuilder<MediaTable>? where,
     int? limit,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.count<Tv>(
-      where: where?.call(Tv.t),
+    return session.db.count<Media>(
+      where: where?.call(Media.t),
       limit: limit,
       transaction: transaction,
     );

@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_applications_flutter/features/auth/presentation/providers/auth_provider.dart';
+import 'package:tv_applications_flutter/features/dashboard/presentation/pages/widget/navigation_rail.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
   @override
+  State<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  final List<String> bottomLabel = <String>['Info', 'Person'];
+  final List<IconData> bottomIcons = <IconData>[PhosphorIconsBold.info, PhosphorIconsBold.person];
+
+  final List<String> railLabel = <String>['Home', 'List'];
+  final List<IconData> railIcons = <IconData>[PhosphorIconsBold.house, PhosphorIconsBold.medalMilitary];
+
+  final List<Widget> pages = [
+    const Center(child: Text('Home', style: TextStyle(fontSize: 20))),
+    const Center(child: Text('List', style: TextStyle(fontSize: 20))),
+  ];
+  @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
@@ -23,43 +41,34 @@ class DashboardPage extends StatelessWidget {
           ),
         ],
       ),
-      body: GridView.count(
-        padding: const EdgeInsets.all(16),
-        crossAxisCount: 2,
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
-        children: [
-          _DashboardCard(
-            title: 'Profile',
-            icon: Icons.person,
-            onTap: () {
-              // TODO: Navigate to profile
-            },
-          ),
-          _DashboardCard(
-            title: 'Settings',
-            icon: Icons.settings,
-            onTap: () {
-              // TODO: Navigate to settings
-            },
-          ),
-          _DashboardCard(
-            title: 'Analytics',
-            icon: Icons.analytics,
-            onTap: () {
-              // TODO: Navigate to analytics
-            },
-          ),
-          _DashboardCard(
-            title: 'Support',
-            icon: Icons.support_agent,
-            onTap: () {
-              // TODO: Navigate to support
-            },
-          ),
-        ],
+      body: NavigationFlutter(
+        railItemCount: railLabel.length,
+        railIcons: railIcons,
+        pages: pages,
+        // logo: PhosphorIconsBold.githubLogo,
+        profileImage: networkImage,
+        navigationRailPadding: 8,
+        logoSize: 15,
+        navigationRailRadius: 15,
+        railIconSize: 24,
+        railIconsSizeHeight: 40,
+        railIconsSizeWidth: 40,
+        bottomIconsSize: 25,
+
+
+
+        // bottomRailLabel: bottomLabel,
+        navigationRailColor: colorScheme.onPrimary,
+        railLabel: railLabel,
+        // bottomItemCount: bottomLabel.length,
+       // bottomIcons: bottomIcons,
+        activeColor: colorScheme.primary,
+        inActiveColor: colorScheme.primary.withOpacity(0.2),
+        onBottomIndexSelected: (int index) {},
+        onNavigationRailIndexSelected: (int value) {}, logoutIcon: PhosphorIconsBold.signOut, profileClick: () {  }, logoutClick: () {  },
       ),
     );
+
   }
 }
 

@@ -3,7 +3,7 @@ movie:
   - deleteMovie:
   - updateMovie:
   - getAllMovie:
-tv:
+media:
   - createTv:
   - deleteTv:
   - updateTv:

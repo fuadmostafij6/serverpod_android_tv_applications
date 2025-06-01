@@ -15,7 +15,7 @@ import 'package:serverpod_test/serverpod_test.dart' as _i1;
 import 'package:serverpod/serverpod.dart' as _i2;
 import 'dart:async' as _i3;
 import 'package:tv_applications_server/src/generated/movie.dart' as _i4;
-import 'package:tv_applications_server/src/generated/tv.dart' as _i5;
+import 'package:tv_applications_server/src/generated/media.dart' as _i5;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i6;
 import 'package:tv_applications_server/src/generated/protocol.dart';
 import 'package:tv_applications_server/src/generated/endpoints.dart';
@@ -103,7 +103,7 @@ void withServerpod(
 class TestEndpoints {
   late final _MovieEndpoint movie;
 
-  late final _TvEndpoint tv;
+  late final _MediaEndpoint media;
 
   late final _UserManager userManager;
 
@@ -121,7 +121,7 @@ class _InternalTestEndpoints extends TestEndpoints
       endpoints,
       serializationManager,
     );
-    tv = _TvEndpoint(
+    media = _MediaEndpoint(
       endpoints,
       serializationManager,
     );
@@ -261,8 +261,8 @@ class _MovieEndpoint {
   }
 }
 
-class _TvEndpoint {
-  _TvEndpoint(
+class _MediaEndpoint {
+  _MediaEndpoint(
     this._endpointDispatch,
     this._serializationManager,
   );
@@ -273,18 +273,18 @@ class _TvEndpoint {
 
   _i3.Future<void> createTv(
     _i1.TestSessionBuilder sessionBuilder,
-    _i5.Tv tv,
+    _i5.Media tv,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-        endpoint: 'tv',
+        endpoint: 'media',
         method: 'createTv',
       );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'tv',
+          endpointPath: 'media',
           methodName: 'createTv',
           parameters: _i1.testObjectToJson({'tv': tv}),
           serializationManager: _serializationManager,
@@ -302,18 +302,18 @@ class _TvEndpoint {
 
   _i3.Future<void> deleteTv(
     _i1.TestSessionBuilder sessionBuilder,
-    _i5.Tv tv,
+    _i5.Media tv,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-        endpoint: 'tv',
+        endpoint: 'media',
         method: 'deleteTv',
       );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'tv',
+          endpointPath: 'media',
           methodName: 'deleteTv',
           parameters: _i1.testObjectToJson({'tv': tv}),
           serializationManager: _serializationManager,
@@ -331,18 +331,18 @@ class _TvEndpoint {
 
   _i3.Future<void> updateTv(
     _i1.TestSessionBuilder sessionBuilder,
-    _i5.Tv tv,
+    _i5.Media tv,
   ) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-        endpoint: 'tv',
+        endpoint: 'media',
         method: 'updateTv',
       );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'tv',
+          endpointPath: 'media',
           methodName: 'updateTv',
           parameters: _i1.testObjectToJson({'tv': tv}),
           serializationManager: _serializationManager,
@@ -358,18 +358,18 @@ class _TvEndpoint {
     });
   }
 
-  _i3.Future<List<_i5.Tv>> getAllTv(
+  _i3.Future<List<_i5.Media>> getAllTv(
       _i1.TestSessionBuilder sessionBuilder) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
-        endpoint: 'tv',
+        endpoint: 'media',
         method: 'getAllTv',
       );
       try {
         var _localCallContext = await _endpointDispatch.getMethodCallContext(
           createSessionCallback: (_) => _localUniqueSession,
-          endpointPath: 'tv',
+          endpointPath: 'media',
           methodName: 'getAllTv',
           parameters: _i1.testObjectToJson({}),
           serializationManager: _serializationManager,
@@ -377,7 +377,7 @@ class _TvEndpoint {
         var _localReturnValue = await (_localCallContext.method.call(
           _localUniqueSession,
           _localCallContext.arguments,
-        ) as _i3.Future<List<_i5.Tv>>);
+        ) as _i3.Future<List<_i5.Media>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

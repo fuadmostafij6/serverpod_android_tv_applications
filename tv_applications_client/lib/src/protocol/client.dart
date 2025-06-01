@@ -12,7 +12,7 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
 import 'package:tv_applications_client/src/protocol/movie.dart' as _i3;
-import 'package:tv_applications_client/src/protocol/tv.dart' as _i4;
+import 'package:tv_applications_client/src/protocol/media.dart' as _i4;
 import 'package:serverpod_auth_client/serverpod_auth_client.dart' as _i5;
 import 'protocol.dart' as _i6;
 
@@ -53,33 +53,33 @@ class EndpointMovie extends _i1.EndpointRef {
 }
 
 /// {@category Endpoint}
-class EndpointTv extends _i1.EndpointRef {
-  EndpointTv(_i1.EndpointCaller caller) : super(caller);
+class EndpointMedia extends _i1.EndpointRef {
+  EndpointMedia(_i1.EndpointCaller caller) : super(caller);
 
   @override
-  String get name => 'tv';
+  String get name => 'media';
 
-  _i2.Future<void> createTv(_i4.Tv tv) => caller.callServerEndpoint<void>(
-        'tv',
+  _i2.Future<void> createTv(_i4.Media tv) => caller.callServerEndpoint<void>(
+        'media',
         'createTv',
         {'tv': tv},
       );
 
-  _i2.Future<void> deleteTv(_i4.Tv tv) => caller.callServerEndpoint<void>(
-        'tv',
+  _i2.Future<void> deleteTv(_i4.Media tv) => caller.callServerEndpoint<void>(
+        'media',
         'deleteTv',
         {'tv': tv},
       );
 
-  _i2.Future<void> updateTv(_i4.Tv tv) => caller.callServerEndpoint<void>(
-        'tv',
+  _i2.Future<void> updateTv(_i4.Media tv) => caller.callServerEndpoint<void>(
+        'media',
         'updateTv',
         {'tv': tv},
       );
 
-  _i2.Future<List<_i4.Tv>> getAllTv() =>
-      caller.callServerEndpoint<List<_i4.Tv>>(
-        'tv',
+  _i2.Future<List<_i4.Media>> getAllTv() =>
+      caller.callServerEndpoint<List<_i4.Media>>(
+        'media',
         'getAllTv',
         {},
       );
@@ -182,7 +182,7 @@ class Client extends _i1.ServerpodClientShared {
               disconnectStreamsOnLostInternetConnection,
         ) {
     movie = EndpointMovie(this);
-    tv = EndpointTv(this);
+    media = EndpointMedia(this);
     userManager = EndpointUserManager(this);
     userAuthAdmin = EndpointUserAuthAdmin(this);
     modules = Modules(this);
@@ -190,7 +190,7 @@ class Client extends _i1.ServerpodClientShared {
 
   late final EndpointMovie movie;
 
-  late final EndpointTv tv;
+  late final EndpointMedia media;
 
   late final EndpointUserManager userManager;
 
@@ -201,7 +201,7 @@ class Client extends _i1.ServerpodClientShared {
   @override
   Map<String, _i1.EndpointRef> get endpointRefLookup => {
         'movie': movie,
-        'tv': tv,
+        'media': media,
         'userManager': userManager,
         'userAuthAdmin': userAuthAdmin,
       };

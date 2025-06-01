@@ -5,3 +5,4 @@ default: channel
 values:
   - shows
   - channel
+  - movie

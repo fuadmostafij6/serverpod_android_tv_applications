@@ -13,13 +13,13 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i3;
 import 'channel_category.dart' as _i4;
-import 'movie.dart' as _i5;
-import 'tv.dart' as _i6;
+import 'media.dart' as _i5;
+import 'movie.dart' as _i6;
 import 'package:tv_applications_server/src/generated/movie.dart' as _i7;
-import 'package:tv_applications_server/src/generated/tv.dart' as _i8;
+import 'package:tv_applications_server/src/generated/media.dart' as _i8;
 export 'channel_category.dart';
+export 'media.dart';
 export 'movie.dart';
-export 'tv.dart';
 
 class Protocol extends _i1.SerializationManagerServer {
   Protocol._();
@@ -29,6 +29,80 @@ class Protocol extends _i1.SerializationManagerServer {
   static final Protocol _instance = Protocol._();
 
   static final List<_i2.TableDefinition> targetTableDefinitions = [
+    _i2.TableDefinition(
+      name: 'media',
+      dartName: 'Media',
+      schema: 'public',
+      module: 'tv_applications',
+      columns: [
+        _i2.ColumnDefinition(
+          name: 'id',
+          columnType: _i2.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int?',
+          columnDefault: 'nextval(\'media_id_seq\'::regclass)',
+        ),
+        _i2.ColumnDefinition(
+          name: 'title',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'url',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _i2.ColumnDefinition(
+          name: 'type',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'protocol:Type',
+        ),
+        _i2.ColumnDefinition(
+          name: 'shows',
+          columnType: _i2.ColumnType.json,
+          isNullable: true,
+          dartType: 'List<protocol:Movie>?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'channelsUrl',
+          columnType: _i2.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'thumbnail',
+          columnType: _i2.ColumnType.bytea,
+          isNullable: true,
+          dartType: 'dart:typed_data:ByteData?',
+        ),
+        _i2.ColumnDefinition(
+          name: 'thumbnailUrl',
+          columnType: _i2.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+      ],
+      foreignKeys: [],
+      indexes: [
+        _i2.IndexDefinition(
+          indexName: 'media_pkey',
+          tableSpace: null,
+          elements: [
+            _i2.IndexElementDefinition(
+              type: _i2.IndexElementDefinitionType.column,
+              definition: 'id',
+            )
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: true,
+        )
+      ],
+      managed: true,
+    ),
     _i2.TableDefinition(
       name: 'movie',
       dartName: 'Movie',
@@ -85,80 +159,6 @@ class Protocol extends _i1.SerializationManagerServer {
       ],
       managed: true,
     ),
-    _i2.TableDefinition(
-      name: 'tv',
-      dartName: 'Tv',
-      schema: 'public',
-      module: 'tv_applications',
-      columns: [
-        _i2.ColumnDefinition(
-          name: 'id',
-          columnType: _i2.ColumnType.bigint,
-          isNullable: false,
-          dartType: 'int?',
-          columnDefault: 'nextval(\'tv_id_seq\'::regclass)',
-        ),
-        _i2.ColumnDefinition(
-          name: 'title',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
-        ),
-        _i2.ColumnDefinition(
-          name: 'url',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
-        ),
-        _i2.ColumnDefinition(
-          name: 'type',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'protocol:Type',
-        ),
-        _i2.ColumnDefinition(
-          name: 'shows',
-          columnType: _i2.ColumnType.json,
-          isNullable: true,
-          dartType: 'List<protocol:Movie>?',
-        ),
-        _i2.ColumnDefinition(
-          name: 'channelsUrl',
-          columnType: _i2.ColumnType.text,
-          isNullable: true,
-          dartType: 'String?',
-        ),
-        _i2.ColumnDefinition(
-          name: 'thumbnail',
-          columnType: _i2.ColumnType.bytea,
-          isNullable: true,
-          dartType: 'dart:typed_data:ByteData?',
-        ),
-        _i2.ColumnDefinition(
-          name: 'thumbnailUrl',
-          columnType: _i2.ColumnType.text,
-          isNullable: false,
-          dartType: 'String',
-        ),
-      ],
-      foreignKeys: [],
-      indexes: [
-        _i2.IndexDefinition(
-          indexName: 'tv_pkey',
-          tableSpace: null,
-          elements: [
-            _i2.IndexElementDefinition(
-              type: _i2.IndexElementDefinitionType.column,
-              definition: 'id',
-            )
-          ],
-          type: 'btree',
-          isUnique: true,
-          isPrimary: true,
-        )
-      ],
-      managed: true,
-    ),
     ..._i3.Protocol.targetTableDefinitions,
     ..._i2.Protocol.targetTableDefinitions,
   ];
@@ -172,31 +172,31 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i4.Type) {
       return _i4.Type.fromJson(data) as T;
     }
-    if (t == _i5.Movie) {
-      return _i5.Movie.fromJson(data) as T;
+    if (t == _i5.Media) {
+      return _i5.Media.fromJson(data) as T;
     }
-    if (t == _i6.Tv) {
-      return _i6.Tv.fromJson(data) as T;
+    if (t == _i6.Movie) {
+      return _i6.Movie.fromJson(data) as T;
     }
     if (t == _i1.getType<_i4.Type?>()) {
       return (data != null ? _i4.Type.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i5.Movie?>()) {
-      return (data != null ? _i5.Movie.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i5.Media?>()) {
+      return (data != null ? _i5.Media.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<_i6.Tv?>()) {
-      return (data != null ? _i6.Tv.fromJson(data) : null) as T;
+    if (t == _i1.getType<_i6.Movie?>()) {
+      return (data != null ? _i6.Movie.fromJson(data) : null) as T;
     }
-    if (t == _i1.getType<List<_i5.Movie>?>()) {
+    if (t == _i1.getType<List<_i6.Movie>?>()) {
       return (data != null
-          ? (data as List).map((e) => deserialize<_i5.Movie>(e)).toList()
+          ? (data as List).map((e) => deserialize<_i6.Movie>(e)).toList()
           : null) as T;
     }
     if (t == List<_i7.Movie>) {
       return (data as List).map((e) => deserialize<_i7.Movie>(e)).toList() as T;
     }
-    if (t == List<_i8.Tv>) {
-      return (data as List).map((e) => deserialize<_i8.Tv>(e)).toList() as T;
+    if (t == List<_i8.Media>) {
+      return (data as List).map((e) => deserialize<_i8.Media>(e)).toList() as T;
     }
     if (t == List<_i3.UserInfo>) {
       return (data as List).map((e) => deserialize<_i3.UserInfo>(e)).toList()
@@ -218,11 +218,11 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data is _i4.Type) {
       return 'Type';
     }
-    if (data is _i5.Movie) {
-      return 'Movie';
+    if (data is _i5.Media) {
+      return 'Media';
     }
-    if (data is _i6.Tv) {
-      return 'Tv';
+    if (data is _i6.Movie) {
+      return 'Movie';
     }
     className = _i2.Protocol().getClassNameForObject(data);
     if (className != null) {
@@ -244,11 +244,11 @@ class Protocol extends _i1.SerializationManagerServer {
     if (dataClassName == 'Type') {
       return deserialize<_i4.Type>(data['data']);
     }
-    if (dataClassName == 'Movie') {
-      return deserialize<_i5.Movie>(data['data']);
+    if (dataClassName == 'Media') {
+      return deserialize<_i5.Media>(data['data']);
     }
-    if (dataClassName == 'Tv') {
-      return deserialize<_i6.Tv>(data['data']);
+    if (dataClassName == 'Movie') {
+      return deserialize<_i6.Movie>(data['data']);
     }
     if (dataClassName.startsWith('serverpod.')) {
       data['className'] = dataClassName.substring(10);
@@ -276,10 +276,10 @@ class Protocol extends _i1.SerializationManagerServer {
       }
     }
     switch (t) {
-      case _i5.Movie:
-        return _i5.Movie.t;
-      case _i6.Tv:
-        return _i6.Tv.t;
+      case _i5.Media:
+        return _i5.Media.t;
+      case _i6.Movie:
+        return _i6.Movie.t;
     }
     return null;
   }

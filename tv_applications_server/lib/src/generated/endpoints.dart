@@ -15,7 +15,7 @@ import '../endpoints/tv_endpoint.dart' as _i3;
 import '../endpoints/user_auth.dart' as _i4;
 import '../endpoints/user_auth_admin.dart' as _i5;
 import 'package:tv_applications_server/src/generated/movie.dart' as _i6;
-import 'package:tv_applications_server/src/generated/tv.dart' as _i7;
+import 'package:tv_applications_server/src/generated/media.dart' as _i7;
 import 'package:serverpod_auth_server/serverpod_auth_server.dart' as _i8;
 
 class Endpoints extends _i1.EndpointDispatch {
@@ -28,10 +28,10 @@ class Endpoints extends _i1.EndpointDispatch {
           'movie',
           null,
         ),
-      'tv': _i3.TvEndpoint()
+      'media': _i3.MediaEndpoint()
         ..initialize(
           server,
-          'tv',
+          'media',
           null,
         ),
       'userManager': _i4.UserManager()
@@ -116,16 +116,16 @@ class Endpoints extends _i1.EndpointDispatch {
         ),
       },
     );
-    connectors['tv'] = _i1.EndpointConnector(
-      name: 'tv',
-      endpoint: endpoints['tv']!,
+    connectors['media'] = _i1.EndpointConnector(
+      name: 'media',
+      endpoint: endpoints['media']!,
       methodConnectors: {
         'createTv': _i1.MethodConnector(
           name: 'createTv',
           params: {
             'tv': _i1.ParameterDescription(
               name: 'tv',
-              type: _i1.getType<_i7.Tv>(),
+              type: _i1.getType<_i7.Media>(),
               nullable: false,
             )
           },
@@ -133,7 +133,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['tv'] as _i3.TvEndpoint).createTv(
+              (endpoints['media'] as _i3.MediaEndpoint).createTv(
             session,
             params['tv'],
           ),
@@ -143,7 +143,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'tv': _i1.ParameterDescription(
               name: 'tv',
-              type: _i1.getType<_i7.Tv>(),
+              type: _i1.getType<_i7.Media>(),
               nullable: false,
             )
           },
@@ -151,7 +151,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['tv'] as _i3.TvEndpoint).deleteTv(
+              (endpoints['media'] as _i3.MediaEndpoint).deleteTv(
             session,
             params['tv'],
           ),
@@ -161,7 +161,7 @@ class Endpoints extends _i1.EndpointDispatch {
           params: {
             'tv': _i1.ParameterDescription(
               name: 'tv',
-              type: _i1.getType<_i7.Tv>(),
+              type: _i1.getType<_i7.Media>(),
               nullable: false,
             )
           },
@@ -169,7 +169,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['tv'] as _i3.TvEndpoint).updateTv(
+              (endpoints['media'] as _i3.MediaEndpoint).updateTv(
             session,
             params['tv'],
           ),
@@ -181,7 +181,7 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['tv'] as _i3.TvEndpoint).getAllTv(session),
+              (endpoints['media'] as _i3.MediaEndpoint).getAllTv(session),
         ),
       },
     );

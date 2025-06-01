@@ -13,7 +13,8 @@ import 'package:serverpod/serverpod.dart' as _i1;
 
 enum Type implements _i1.SerializableModel {
   shows,
-  channel;
+  channel,
+  movie;
 
   static Type fromJson(String name) {
     switch (name) {
@@ -21,6 +22,8 @@ enum Type implements _i1.SerializableModel {
         return Type.shows;
       case 'channel':
         return Type.channel;
+      case 'movie':
+        return Type.movie;
       default:
         return Type.channel;
     }

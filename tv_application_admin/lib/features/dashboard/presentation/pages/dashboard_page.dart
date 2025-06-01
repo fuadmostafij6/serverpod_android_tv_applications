@@ -20,15 +20,13 @@ class _DashboardPageState extends State<DashboardPage> {
   // Define navigation indices as constants for better maintainability
   static const int _dashboardIndex = 0;
   static const int _profileIndex = 1;
-  static const int _userManagementIndex = 2;
-  static const int _usersIndex = 3;
-  static const int _adminUsersIndex = 4;
-  static const int _mediaIndex = 5;
-  static const int _tvIndex = 6;
-  static const int _movieIndex = 7;
-  static const int _settingsIndex = 8;
-  static const int _analyticsIndex = 9;
-  static const int _supportIndex = 10;
+  static const int _usersIndex = 2;
+  static const int _adminUsersIndex = 3;
+  static const int _tvIndex = 4;
+  static const int _movieIndex = 5;
+  static const int _settingsIndex = 6;
+  static const int _analyticsIndex = 7;
+  static const int _supportIndex = 8;
 
   void _handleNavigation(int index) {
     setState(() {
@@ -89,28 +87,24 @@ class _DashboardPageState extends State<DashboardPage> {
                 label: Text('Profile'),
               ),
               NavigationRailDestination(
-                icon: IconButton(
-                  icon: Icon(_isUserManagementExpanded ? Icons.expand_less : Icons.expand_more),
-                  onPressed: () {
-                    setState(() {
-                      _isUserManagementExpanded = !_isUserManagementExpanded;
-                    });
-                  },
-                ),
-                selectedIcon: const Icon(Icons.people),
-                label: const Text('User Management'),
+
+                icon: const Icon(Icons.people),
+                selectedIcon: const Icon(Icons.people_outline) ,
+                label: const Text('User'),
               ),
               NavigationRailDestination(
-                icon: IconButton(
-                  icon: Icon(_isMediaExpanded ? Icons.expand_less : Icons.expand_more),
-                  onPressed: () {
-                    setState(() {
-                      _isMediaExpanded = !_isMediaExpanded;
-                    });
-                  },
-                ),
-                selectedIcon: const Icon(Icons.movie),
-                label: const Text('Media'),
+
+                icon: const Icon(Icons.people),
+                selectedIcon: const Icon(Icons.people_outline) ,
+                label: const Text('Admin'),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.movie),
+                label: const Text('TV'),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.movie),
+                label: const Text('Movie'),
               ),
               const NavigationRailDestination(
                 icon: Icon(Icons.settings_outlined),

@@ -19,6 +19,7 @@ import 'package:tv_application_admin/features/dashboard/presentation/pages/suppo
 import 'package:tv_application_admin/features/auth/presentation/providers/auth_provider.dart';
 import 'package:tv_application_admin/features/splash/presentation/pages/splash_page.dart';
 import 'package:tv_application_admin/features/dashboard/presentation/providers/admin_users_provider.dart';
+import 'package:tv_application_admin/features/dashboard/presentation/providers/tv_shows_provider.dart';
 
 
 
@@ -60,6 +61,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => AdminUsersProvider()),
+        ChangeNotifierProvider(create: (_) => TVShowsProvider()),
       ],
       child: const MyApp(),
     ),

@@ -1,5 +1,5 @@
-class: Tv
-table: tv
+class: Media
+table: media
 fields:
   ### The title of the TV entry.
   title: String

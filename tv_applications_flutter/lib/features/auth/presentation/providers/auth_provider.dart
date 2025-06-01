@@ -29,6 +29,9 @@ class AuthProvider extends ChangeNotifier {
     // TODO: Implement actual registration logic with your backend
     // For now, we'll just simulate a successful registration
     final success = await authController.createAccountRequest(name, email, password);
+    final user = await client.userManager.getUserInfo(email);
+
+
 
 
     notifyListeners();
@@ -46,7 +49,9 @@ class AuthProvider extends ChangeNotifier {
   }
 Future<bool> checkEmailVerification(String email, String verificationCode ) async {
  final user =  await authController.validateAccount(email, verificationCode);
+
     if (user != null) {
+      await client.userManager.updateScopeWithAdmin(user!.id!);
       _isAuthenticated = true;
       _userEmail = email;
       notifyListeners();

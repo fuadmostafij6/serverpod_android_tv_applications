@@ -14,8 +14,8 @@ import 'channel_category.dart' as _i2;
 import 'movie.dart' as _i3;
 import 'dart:typed_data' as _i4;
 
-abstract class Tv implements _i1.SerializableModel {
-  Tv._({
+abstract class Media implements _i1.SerializableModel {
+  Media._({
     this.id,
     required this.title,
     required this.url,
@@ -26,7 +26,7 @@ abstract class Tv implements _i1.SerializableModel {
     required this.thumbnailUrl,
   });
 
-  factory Tv({
+  factory Media({
     int? id,
     required String title,
     required String url,
@@ -35,10 +35,10 @@ abstract class Tv implements _i1.SerializableModel {
     String? channelsUrl,
     _i4.ByteData? thumbnail,
     required String thumbnailUrl,
-  }) = _TvImpl;
+  }) = _MediaImpl;
 
-  factory Tv.fromJson(Map<String, dynamic> jsonSerialization) {
-    return Tv(
+  factory Media.fromJson(Map<String, dynamic> jsonSerialization) {
+    return Media(
       id: jsonSerialization['id'] as int?,
       title: jsonSerialization['title'] as String,
       url: jsonSerialization['url'] as String,
@@ -80,10 +80,10 @@ abstract class Tv implements _i1.SerializableModel {
   /// The URL of the thumbnail image.
   String thumbnailUrl;
 
-  /// Returns a shallow copy of this [Tv]
+  /// Returns a shallow copy of this [Media]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  Tv copyWith({
+  Media copyWith({
     int? id,
     String? title,
     String? url,
@@ -115,8 +115,8 @@ abstract class Tv implements _i1.SerializableModel {
 
 class _Undefined {}
 
-class _TvImpl extends Tv {
-  _TvImpl({
+class _MediaImpl extends Media {
+  _MediaImpl({
     int? id,
     required String title,
     required String url,
@@ -136,11 +136,11 @@ class _TvImpl extends Tv {
           thumbnailUrl: thumbnailUrl,
         );
 
-  /// Returns a shallow copy of this [Tv]
+  /// Returns a shallow copy of this [Media]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  Tv copyWith({
+  Media copyWith({
     Object? id = _Undefined,
     String? title,
     String? url,
@@ -150,7 +150,7 @@ class _TvImpl extends Tv {
     Object? thumbnail = _Undefined,
     String? thumbnailUrl,
   }) {
-    return Tv(
+    return Media(
       id: id is int? ? id : this.id,
       title: title ?? this.title,
       url: url ?? this.url,

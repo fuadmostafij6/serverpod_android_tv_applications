@@ -11,7 +11,7 @@ import '../generated/protocol.dart';
 
 // After adding or modifying an endpoint, you will need to run
 // `serverpod generate` to update the server and client code.
-class TvEndpoint extends Endpoint {
+class MediaEndpoint extends Endpoint {
   // You create methods in your endpoint which are accessible from the client by
   // creating a public method with `Session` as its first parameter.
   // `bool`, `int`, `double`, `String`, `UuidValue`, `Duration`, `DateTime`, `ByteData`,
@@ -25,24 +25,24 @@ class TvEndpoint extends Endpoint {
 
   @override
   Set<Scope> get requiredScopes => {Scope.admin};
-  Future<void> createTv(Session session, Tv tv) async {
-    await Tv.db.insertRow(session, tv);
+  Future<void> createTv(Session session, Media tv) async {
+    await Media.db.insertRow(session, tv);
   }
   //
-  Future<void> deleteTv(Session session, Tv tv) async {
-    await Tv.db.deleteRow(session, tv);
+  Future<void> deleteTv(Session session, Media tv) async {
+    await Media.db.deleteRow(session, tv);
   }
 
-  Future<void> updateTv(Session session, Tv tv) async {
-    await Tv.db.updateRow(session, tv);
+  Future<void> updateTv(Session session, Media tv) async {
+    await Media.db.updateRow(session, tv);
   }
 
 
   //
-  Future<List<Tv>> getAllTv(Session session) async {
+  Future<List<Media>> getAllTv(Session session) async {
     // By ordering by the id column, we always get the notes in the same order
     // and not in the order they were updated.
-    return await Tv.db.find(
+    return await Media.db.find(
       session,
       orderBy: (t) => t.id,
     );
