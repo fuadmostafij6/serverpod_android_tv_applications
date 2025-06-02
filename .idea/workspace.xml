@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5468b549-5f6e-41af-bb3f-a853a33a297f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/commands/channel_seeder.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_application_admin/lib/core/ui/components/button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/lib/core/ui/components/button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_application_admin/lib/features/dashboard/presentation/pages/tv_shows_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/lib/features/dashboard/presentation/pages/tv_shows_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_application_admin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_application_admin/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_client/lib/src/protocol/client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_client/lib/src/protocol/client.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/lib/features/dashboard/presentation/pages/dashboard_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/lib/features/dashboard/presentation/pages/dashboard_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/lib/features/dashboard/presentation/pages/widget/navigation_rail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/lib/features/dashboard/presentation/pages/widget/navigation_rail.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/server.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/server.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/endpoints/tv_endpoint.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/endpoints/tv_endpoint.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/endpoints.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/endpoints.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/protocol.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/protocol.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_server/migrations/migration_registry.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/migrations/migration_registry.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_server/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_server/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_server/test/integration/test_tools/serverpod_test_tools.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/test/integration/test_tools/serverpod_test_tools.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,18 +25,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "fuadmostafij6"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;fuadmostafij6&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/fuadmostafij6/serverpod_android_tv_applications.git",
-    "accountId": "002f1ba8-6035-4ce7-95e3-3fd9ac9f1a24"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fuadmostafij6/serverpod_android_tv_applications.git&quot;,
+    &quot;accountId&quot;: &quot;002f1ba8-6035-4ce7-95e3-3fd9ac9f1a24&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
