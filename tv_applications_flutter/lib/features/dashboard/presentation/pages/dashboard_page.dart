@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_applications_flutter/features/auth/presentation/providers/auth_provider.dart';
+import 'package:tv_applications_flutter/features/dashboard/presentation/pages/tv.dart';
 import 'package:tv_applications_flutter/features/dashboard/presentation/pages/widget/navigation_rail.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _DashboardPageState extends State<DashboardPage> {
   final List<IconData> railIcons = <IconData>[PhosphorIconsBold.monitor, PhosphorIconsBold.filmReel,  PhosphorIconsBold.filmReel,];
 
   final List<Widget> pages = [
-    const Center(child: Text('TV', style: TextStyle(fontSize: 20))),
+    Tv(),
     const Center(child: Text('Movies', style: TextStyle(fontSize: 20))),
     const Center(child: Text('Series', style: TextStyle(fontSize: 20))),
     const Center(child: Text('Profile', style: TextStyle(fontSize: 20))),

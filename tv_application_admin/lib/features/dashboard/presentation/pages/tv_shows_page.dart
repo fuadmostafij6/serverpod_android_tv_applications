@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:number_paginator/number_paginator.dart';
 import 'package:provider/provider.dart';
 import 'package:tv_application_admin/core/ui/components/button.dart' show ShadcnButton;
 import 'package:tv_application_admin/features/dashboard/presentation/providers/tv_shows_provider.dart';
@@ -20,6 +21,7 @@ Future<List<Media>> parseM3UFromUrl(String m3uUrl) async {
     }
 
     final lines = LineSplitter.split(response.body).toList();
+    print(lines.length);
 
     for (int i = 0; i < lines.length - 1; i++) {
       if (lines[i].startsWith('#EXTINF')) {
@@ -50,7 +52,9 @@ Future<List<Media>> parseM3UFromUrl(String m3uUrl) async {
               ),
             );
           }
+          print("success: $i");
         } catch (_) {
+          print("error: $i");
           continue; // Skip bad links
         }
       }
@@ -72,6 +76,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
   int _uploadProgress = 0;
   bool _loading = false;
   bool _uploading = false;
+  int _currentPage = 1;
   Future<void> _startUploadFlow() async {
     setState(() {
       _loading = true;
@@ -80,7 +85,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
 
     try {
       // STEP 1: Parse M3U file from URL
-      List<Media> mediaList = await parseM3UFromUrl("https://iptv-org.github.io/iptv/categories/auto.m3u");
+      List<Media> mediaList = await parseM3UFromUrl("https://iptv-org.github.io/iptv/categories/sports.m3u");
       print("Parsed ${mediaList.length} media items from M3U file.");
 
       setState(() {
@@ -113,6 +118,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
       setState(() {
         _uploading = false;
       });
+      context.read<TVShowsProvider>().loadTVShows(page:1 );
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Upload complete!')),
@@ -134,7 +140,7 @@ class _TVShowsPageState extends State<TVShowsPage> {
     super.initState();
     // Load TV shows when the page is first opened
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<TVShowsProvider>().loadTVShows();
+      context.read<TVShowsProvider>().loadTVShows(page: _currentPage);
     });
   }
 
@@ -165,6 +171,16 @@ class _TVShowsPageState extends State<TVShowsPage> {
             const TVShowForm(),
             const SizedBox(height: 24),
             const TVShowsList(),
+            NumberPaginator(
+              numberPages: 10,
+
+              onPageChange: (int index) {
+                setState(() {
+                  _currentPage = index + 1;
+                });
+                context.read<TVShowsProvider>().loadTVShows(page: _currentPage);
+              },
+            )
           ],
         ),
       ),

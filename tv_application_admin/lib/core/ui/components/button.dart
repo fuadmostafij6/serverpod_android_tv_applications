@@ -47,8 +47,8 @@ class ShadcnButton extends StatelessWidget {
               value: value,
               valueColor: AlwaysStoppedAnimation<Color>(
                 variant == ButtonVariant.primary
-                    ? colorScheme.onPrimary
-                    : colorScheme.primary,
+                    ? Colors.white
+                    : Colors.white,
               ),
             ),
           )

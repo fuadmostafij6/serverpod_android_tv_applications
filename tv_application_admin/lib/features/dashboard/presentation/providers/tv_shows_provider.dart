@@ -11,10 +11,11 @@ class TVShowsProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get error => _error;
 
-  Future<void> loadTVShows() async {
+  Future<void> loadTVShows({int tvPerPage = 10, required int page}) async {
     _setLoading(true);
+    print('Loading TV shows for page $page with $tvPerPage items per page');
     try {
-      _tvShows = await client.media.getAllTv();
+      _tvShows = await client.media.getAllTv(page: page, tvPerPage: tvPerPage);
       _error = null;
     } catch (e) {
       _error = 'Error loading TV shows: $e';

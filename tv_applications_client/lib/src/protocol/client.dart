@@ -84,11 +84,17 @@ class EndpointMedia extends _i1.EndpointRef {
         {'mediaList': mediaList},
       );
 
-  _i2.Future<List<_i4.Media>> getAllTv() =>
+  _i2.Future<List<_i4.Media>> getAllTv({
+    required int page,
+    required int tvPerPage,
+  }) =>
       caller.callServerEndpoint<List<_i4.Media>>(
         'media',
         'getAllTv',
-        {},
+        {
+          'page': page,
+          'tvPerPage': tvPerPage,
+        },
       );
 }
 
@@ -154,6 +160,27 @@ class EndpointUserAuthAdmin extends _i1.EndpointRef {
       );
 }
 
+/// {@category Endpoint}
+class EndpointUserTv extends _i1.EndpointRef {
+  EndpointUserTv(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'userTv';
+
+  _i2.Future<List<_i4.Media>> getAllTv({
+    required int page,
+    required int tvPerPage,
+  }) =>
+      caller.callServerEndpoint<List<_i4.Media>>(
+        'userTv',
+        'getAllTv',
+        {
+          'page': page,
+          'tvPerPage': tvPerPage,
+        },
+      );
+}
+
 class Modules {
   Modules(Client client) {
     auth = _i5.Caller(client);
@@ -192,6 +219,7 @@ class Client extends _i1.ServerpodClientShared {
     media = EndpointMedia(this);
     userManager = EndpointUserManager(this);
     userAuthAdmin = EndpointUserAuthAdmin(this);
+    userTv = EndpointUserTv(this);
     modules = Modules(this);
   }
 
@@ -203,6 +231,8 @@ class Client extends _i1.ServerpodClientShared {
 
   late final EndpointUserAuthAdmin userAuthAdmin;
 
+  late final EndpointUserTv userTv;
+
   late final Modules modules;
 
   @override
@@ -211,6 +241,7 @@ class Client extends _i1.ServerpodClientShared {
         'media': media,
         'userManager': userManager,
         'userAuthAdmin': userAuthAdmin,
+        'userTv': userTv,
       };
 
   @override
