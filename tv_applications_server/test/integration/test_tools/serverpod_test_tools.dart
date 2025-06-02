@@ -108,6 +108,8 @@ class TestEndpoints {
   late final _UserManager userManager;
 
   late final _UserAuthAdmin userAuthAdmin;
+
+  late final _UserTvEndpoint userTv;
 }
 
 class _InternalTestEndpoints extends TestEndpoints
@@ -130,6 +132,10 @@ class _InternalTestEndpoints extends TestEndpoints
       serializationManager,
     );
     userAuthAdmin = _UserAuthAdmin(
+      endpoints,
+      serializationManager,
+    );
+    userTv = _UserTvEndpoint(
       endpoints,
       serializationManager,
     );
@@ -388,7 +394,10 @@ class _MediaEndpoint {
   }
 
   _i3.Future<List<_i5.Media>> getAllTv(
-      _i1.TestSessionBuilder sessionBuilder) async {
+    _i1.TestSessionBuilder sessionBuilder, {
+    required int page,
+    required int tvPerPage,
+  }) async {
     return _i1.callAwaitableFunctionAndHandleExceptions(() async {
       var _localUniqueSession =
           (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
@@ -400,7 +409,10 @@ class _MediaEndpoint {
           createSessionCallback: (_) => _localUniqueSession,
           endpointPath: 'media',
           methodName: 'getAllTv',
-          parameters: _i1.testObjectToJson({}),
+          parameters: _i1.testObjectToJson({
+            'page': page,
+            'tvPerPage': tvPerPage,
+          }),
           serializationManager: _serializationManager,
         );
         var _localReturnValue = await (_localCallContext.method.call(
@@ -627,6 +639,50 @@ class _UserAuthAdmin {
           _localUniqueSession,
           _localCallContext.arguments,
         ) as _i3.Future<void>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+}
+
+class _UserTvEndpoint {
+  _UserTvEndpoint(
+    this._endpointDispatch,
+    this._serializationManager,
+  );
+
+  final _i2.EndpointDispatch _endpointDispatch;
+
+  final _i2.SerializationManager _serializationManager;
+
+  _i3.Future<List<_i5.Media>> getAllTv(
+    _i1.TestSessionBuilder sessionBuilder, {
+    required int page,
+    required int tvPerPage,
+  }) async {
+    return _i1.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _i1.InternalTestSessionBuilder).internalBuild(
+        endpoint: 'userTv',
+        method: 'getAllTv',
+      );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'userTv',
+          methodName: 'getAllTv',
+          parameters: _i1.testObjectToJson({
+            'page': page,
+            'tvPerPage': tvPerPage,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue = await (_localCallContext.method.call(
+          _localUniqueSession,
+          _localCallContext.arguments,
+        ) as _i3.Future<List<_i5.Media>>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

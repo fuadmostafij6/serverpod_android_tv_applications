@@ -18,3 +18,5 @@ userAuthAdmin:
   - getUserById:
   - blockUser:
   - unblockUser:
+userTv:
+  - getAllTv:
