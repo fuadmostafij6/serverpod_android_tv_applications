@@ -96,6 +96,12 @@ class EndpointMedia extends _i1.EndpointRef {
           'tvPerPage': tvPerPage,
         },
       );
+
+  _i2.Future<void> deleteAllTv() => caller.callServerEndpoint<void>(
+        'media',
+        'deleteAllTv',
+        {},
+      );
 }
 
 /// {@category Endpoint}

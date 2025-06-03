@@ -7,6 +7,10 @@ fields:
   ### The main URL of the TV entry.
   url: String
 
+  cookie: String?
+
+  userAgent: String?
+
   ### The type of the TV entry (e.g., Shows, Channel, etc.).
   type: Type
 

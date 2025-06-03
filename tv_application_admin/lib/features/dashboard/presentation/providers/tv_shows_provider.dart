@@ -13,7 +13,7 @@ class TVShowsProvider extends ChangeNotifier {
 
   Future<void> loadTVShows({int tvPerPage = 10, required int page}) async {
     _setLoading(true);
-    print('Loading TV shows for page $page with $tvPerPage items per page');
+    // print('Loading TV shows for page $page with $tvPerPage items per page');
     try {
       _tvShows = await client.media.getAllTv(page: page, tvPerPage: tvPerPage);
       _error = null;
@@ -95,11 +95,13 @@ class TVShowsProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> deleteTVShow(int id) async {
+  Future<void> deleteTVShow(Media media) async {
     _setLoading(true);
     try {
       // TODO: Implement deleting TV show from the server
-      _tvShows.removeWhere((t) => t.id == id);
+
+      client.media.deleteTv(media);
+      _tvShows.removeWhere((t) => t.id == media.id);
       _error = null;
       notifyListeners();
     } catch (e) {

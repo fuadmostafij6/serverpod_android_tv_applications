@@ -19,6 +19,8 @@ abstract class Media implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     this.id,
     required this.title,
     required this.url,
+    this.cookie,
+    this.userAgent,
     required this.type,
     this.shows,
     this.channelsUrl,
@@ -30,6 +32,8 @@ abstract class Media implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     int? id,
     required String title,
     required String url,
+    String? cookie,
+    String? userAgent,
     required _i2.Type type,
     List<_i3.Movie>? shows,
     String? channelsUrl,
@@ -42,6 +46,8 @@ abstract class Media implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       id: jsonSerialization['id'] as int?,
       title: jsonSerialization['title'] as String,
       url: jsonSerialization['url'] as String,
+      cookie: jsonSerialization['cookie'] as String?,
+      userAgent: jsonSerialization['userAgent'] as String?,
       type: _i2.Type.fromJson((jsonSerialization['type'] as String)),
       shows: (jsonSerialization['shows'] as List?)
           ?.map((e) => _i3.Movie.fromJson((e as Map<String, dynamic>)))
@@ -66,6 +72,10 @@ abstract class Media implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
 
   /// The main URL of the TV entry.
   String url;
+
+  String? cookie;
+
+  String? userAgent;
 
   /// The type of the TV entry (e.g., Shows, Channel, etc.).
   _i2.Type type;
@@ -92,6 +102,8 @@ abstract class Media implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
     int? id,
     String? title,
     String? url,
+    String? cookie,
+    String? userAgent,
     _i2.Type? type,
     List<_i3.Movie>? shows,
     String? channelsUrl,
@@ -104,6 +116,8 @@ abstract class Media implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       if (id != null) 'id': id,
       'title': title,
       'url': url,
+      if (cookie != null) 'cookie': cookie,
+      if (userAgent != null) 'userAgent': userAgent,
       'type': type.toJson(),
       if (shows != null) 'shows': shows?.toJson(valueToJson: (v) => v.toJson()),
       if (channelsUrl != null) 'channelsUrl': channelsUrl,
@@ -118,6 +132,8 @@ abstract class Media implements _i1.TableRow<int?>, _i1.ProtocolSerialization {
       if (id != null) 'id': id,
       'title': title,
       'url': url,
+      if (cookie != null) 'cookie': cookie,
+      if (userAgent != null) 'userAgent': userAgent,
       'type': type.toJson(),
       if (shows != null)
         'shows': shows?.toJson(valueToJson: (v) => v.toJsonForProtocol()),
@@ -164,6 +180,8 @@ class _MediaImpl extends Media {
     int? id,
     required String title,
     required String url,
+    String? cookie,
+    String? userAgent,
     required _i2.Type type,
     List<_i3.Movie>? shows,
     String? channelsUrl,
@@ -173,6 +191,8 @@ class _MediaImpl extends Media {
           id: id,
           title: title,
           url: url,
+          cookie: cookie,
+          userAgent: userAgent,
           type: type,
           shows: shows,
           channelsUrl: channelsUrl,
@@ -188,6 +208,8 @@ class _MediaImpl extends Media {
     Object? id = _Undefined,
     String? title,
     String? url,
+    Object? cookie = _Undefined,
+    Object? userAgent = _Undefined,
     _i2.Type? type,
     Object? shows = _Undefined,
     Object? channelsUrl = _Undefined,
@@ -198,6 +220,8 @@ class _MediaImpl extends Media {
       id: id is int? ? id : this.id,
       title: title ?? this.title,
       url: url ?? this.url,
+      cookie: cookie is String? ? cookie : this.cookie,
+      userAgent: userAgent is String? ? userAgent : this.userAgent,
       type: type ?? this.type,
       shows: shows is List<_i3.Movie>?
           ? shows
@@ -218,6 +242,14 @@ class MediaTable extends _i1.Table<int?> {
     );
     url = _i1.ColumnString(
       'url',
+      this,
+    );
+    cookie = _i1.ColumnString(
+      'cookie',
+      this,
+    );
+    userAgent = _i1.ColumnString(
+      'userAgent',
       this,
     );
     type = _i1.ColumnEnum(
@@ -249,6 +281,10 @@ class MediaTable extends _i1.Table<int?> {
   /// The main URL of the TV entry.
   late final _i1.ColumnString url;
 
+  late final _i1.ColumnString cookie;
+
+  late final _i1.ColumnString userAgent;
+
   /// The type of the TV entry (e.g., Shows, Channel, etc.).
   late final _i1.ColumnEnum<_i2.Type> type;
 
@@ -269,6 +305,8 @@ class MediaTable extends _i1.Table<int?> {
         id,
         title,
         url,
+        cookie,
+        userAgent,
         type,
         shows,
         channelsUrl,

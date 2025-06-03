@@ -348,7 +348,7 @@ class TVShowsList extends StatelessWidget {
                                 icon: const Icon(Icons.delete),
                                 onPressed: () {
                                   if (tvShow.id != null) {
-                                    provider.deleteTVShow(tvShow.id!);
+                                    provider.deleteTVShow(tvShow);
                                   }
                                 },
                               ),

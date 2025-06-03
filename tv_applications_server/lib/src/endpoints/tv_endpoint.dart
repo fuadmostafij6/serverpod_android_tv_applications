@@ -66,5 +66,11 @@ class MediaEndpoint extends Endpoint {
       offset: (page - 1) * tvPerPage,
     );
   }
-
+  Future<void> deleteAllTv(Session session) async {
+   var data =  await Media.db.find(
+      session,
+      where: (t) => t.type.equals(Type.channel),
+    );
+   await Media.db.delete(session, data);
+  }
 }

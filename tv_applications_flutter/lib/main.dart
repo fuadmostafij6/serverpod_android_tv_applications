@@ -10,6 +10,7 @@ import 'package:tv_applications_flutter/features/auth/presentation/pages/registe
 import 'package:tv_applications_flutter/features/auth/presentation/pages/email_verification_page.dart';
 import 'package:tv_applications_flutter/features/dashboard/presentation/pages/dashboard_page.dart';
 import 'package:tv_applications_flutter/features/auth/presentation/providers/auth_provider.dart';
+import 'package:tv_applications_flutter/features/dashboard/presentation/provider/tv_provider.dart';
 import 'package:tv_applications_flutter/features/splash/presentation/pages/splash_page.dart';
 
 
@@ -22,7 +23,7 @@ Future<void> initializeServerpodClient() async {
   // const ipAddress = '10.0.2.2'; // Android emulator ip for the host
 
   // On a real device replace the ipAddress with the IP address of your computer.
-  const ipAddress = 'localhost';
+  const ipAddress = '192.168.68.108';
 
   // Sets up a singleton client object that can be used to talk to the server from
   // anywhere in our app. The client is generated from your server code.
@@ -51,6 +52,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => TvProvider()),
       ],
       child: const MyApp(),
     ),

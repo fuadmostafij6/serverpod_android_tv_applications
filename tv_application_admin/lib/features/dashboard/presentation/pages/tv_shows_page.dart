@@ -11,7 +11,7 @@ import 'package:tv_application_admin/main.dart';
 import 'package:tv_applications_client/tv_applications_client.dart';
 
 import 'package:http/http.dart' as http;
-Future<List<Media>> parseM3UFromUrl(String m3uUrl) async {
+Future<List<Media>> parseM3UFromUrl(String m3uUrl, bool secured) async {
   final List<Media> mediaList = [];
 
   try {
@@ -21,42 +21,101 @@ Future<List<Media>> parseM3UFromUrl(String m3uUrl) async {
     }
 
     final lines = LineSplitter.split(response.body).toList();
-    print(lines.length);
 
-    for (int i = 0; i < lines.length - 1; i++) {
+    for (int i = 0; i < lines.length; i++) {
       if (lines[i].startsWith('#EXTINF')) {
-        final infoLine = lines[i];
-        final urlLine = lines[i + 1];
+        String infoLine = lines[i];
+        String title = 'Unknown Title';
+        String logoUrl = '';
+        String? urlLine;
+        String? userAgent;
+        String? cookie;
 
-        // Ensure it's a URL
-        if (!urlLine.startsWith('http')) continue;
-
-        // Extract title
+        // Parse title
         final titleMatch = RegExp(r',(.+)$').firstMatch(infoLine);
-        final title = titleMatch?.group(1)?.trim() ?? 'Unknown Title';
-
-        // Extract thumbnail URL
-        final logoMatch = RegExp(r'tvg-logo="([^"]+)"').firstMatch(infoLine);
-        final logoUrl = logoMatch?.group(1) ?? '';
-
-        // Optional: Check if URL is working
-        try {
-          final head = await http.head(Uri.parse(urlLine));
-          if (head.statusCode >= 200 && head.statusCode < 400) {
-            mediaList.add(
-              Media(
-                title: title,
-                url: urlLine,
-                channelsUrl: urlLine,
-                thumbnailUrl: logoUrl, type: Type.channel,
-              ),
-            );
-          }
-          print("success: $i");
-        } catch (_) {
-          print("error: $i");
-          continue; // Skip bad links
+        if (titleMatch != null) {
+          title = titleMatch.group(1)?.trim() ?? 'Unknown Title';
         }
+
+        // Parse logo
+        final logoMatch = RegExp(r'tvg-logo="([^"]+)"').firstMatch(infoLine);
+        if (logoMatch != null) {
+          logoUrl = logoMatch.group(1) ?? '';
+        }
+
+        // Look ahead for metadata and the stream URL
+        for (int j = i + 1; j < lines.length; j++) {
+          final nextLine = lines[j];
+
+          if (nextLine.startsWith('#EXTVLCOPT:http-user-agent=')) {
+            userAgent = nextLine.substring(nextLine.indexOf('=') + 1).trim();
+          } else if (nextLine.startsWith('#EXTHTTP:')) {
+            final jsonStr = nextLine.substring('#EXTHTTP:'.length);
+            try {
+              final Map<String, dynamic> json = jsonDecode(jsonStr);
+              cookie = json['cookie'];
+            } catch (e) {
+              print('Failed to parse cookie JSON: $e');
+            }
+          } else if (nextLine.startsWith('http')) {
+            urlLine = nextLine;
+            i = j; // update main index
+            break;
+          }
+        }
+
+        if (urlLine != null) {
+          try {
+            final headers = <String, String>{};
+
+            if (userAgent != null) {
+              headers['User-Agent'] = userAgent;
+            }
+            if (cookie != null) {
+              headers['Cookie'] = cookie;
+            }
+            if (secured){
+              mediaList.add(
+                Media(
+                  title: title,
+                  url: urlLine,
+                  channelsUrl: urlLine,
+                  thumbnailUrl: logoUrl,
+                  type: Type.channel,
+                  userAgent: userAgent,
+                  cookie: cookie,
+                ),
+              );
+            }
+            else{
+              final head = await http.head(
+                Uri.parse(urlLine),
+                headers: headers,
+              );
+              print('HEAD request for $urlLine returned status: ${head.statusCode}');
+              if (head.statusCode >= 200 && head.statusCode < 400) {
+                mediaList.add(
+                  Media(
+                    title: title,
+                    url: urlLine,
+                    channelsUrl: urlLine,
+                    thumbnailUrl: logoUrl,
+                    type: Type.channel,
+                    userAgent: userAgent,
+                    cookie: cookie,
+                  ),
+                );
+              }
+            }
+
+
+          } catch (_) {
+            continue; // Skip broken URL
+          }
+        }
+      }
+      else {
+        print('Skipping line: $lines');
       }
     }
   } catch (e) {
@@ -65,6 +124,7 @@ Future<List<Media>> parseM3UFromUrl(String m3uUrl) async {
 
   return mediaList;
 }
+
 class TVShowsPage extends StatefulWidget {
   const TVShowsPage({super.key});
 
@@ -85,7 +145,8 @@ class _TVShowsPageState extends State<TVShowsPage> {
 
     try {
       // STEP 1: Parse M3U file from URL
-      List<Media> mediaList = await parseM3UFromUrl("https://iptv-org.github.io/iptv/categories/sports.m3u");
+      List<Media> mediaList = await parseM3UFromUrl("https://raw.githubusercontent.com/byte-capsule/Toffee-Channels-Link-Headers/refs/heads/main/toffee_OTT_Navigator.m3u", true);
+     // List<Media> mediaList = await parseM3UFromUrl("https://iptv-org.github.io/iptv/categories/auto.m3u");
       print("Parsed ${mediaList.length} media items from M3U file.");
 
       setState(() {
@@ -134,6 +195,26 @@ class _TVShowsPageState extends State<TVShowsPage> {
       );
     }
   }
+  
+  Future<void> _delete() async {
+    setState(() {
+      _loading = true;
+    });
+
+    try {
+      await client.media.deleteAllTv();
+      context.read<TVShowsProvider>().loadTVShows(page: _currentPage);
+
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error loading TV shows: $e')),
+      );
+    } finally {
+      setState(() {
+        _loading = false;
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -159,12 +240,25 @@ class _TVShowsPageState extends State<TVShowsPage> {
                   'Media',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-                ShadcnButton(
-                  onPressed: (_loading || _uploading) ? null : _startUploadFlow,
-                    value: _uploading ? _uploadProgress / 100 : null,
-                  isLoading: _loading || _uploading,
-                  child: const Text('Bulk Actions'),
+              Row(
+                  children: [
+                    ShadcnButton(
+                      onPressed:  _delete,
+                     
+                      child: const Text('Delete All'),
+                    ),
+                    ShadcnButton(
+                      onPressed: (_loading || _uploading) ? null : _startUploadFlow,
+                      value: _uploading ? _uploadProgress / 100 : null,
+                      isLoading: _loading || _uploading,
+                      child: const Text('Bulk Actions'),
+                    ),
+                    const SizedBox(width: 16),
+                    if (_uploading)
+                      Text('Progress: $_uploadProgress%'),
+                  ],
                 ),
+              
               ],
             ),
             const SizedBox(height: 24),

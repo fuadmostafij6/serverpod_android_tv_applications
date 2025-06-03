@@ -223,6 +223,15 @@ class Endpoints extends _i1.EndpointDispatch {
             tvPerPage: params['tvPerPage'],
           ),
         ),
+        'deleteAllTv': _i1.MethodConnector(
+          name: 'deleteAllTv',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['media'] as _i3.MediaEndpoint).deleteAllTv(session),
+        ),
       },
     );
     connectors['userManager'] = _i1.EndpointConnector(

@@ -9,6 +9,7 @@ media:
   - updateTv:
   - insertMediaList:
   - getAllTv:
+  - deleteAllTv:
 userManager:
   - isSignIn:
   - getUserInfo:

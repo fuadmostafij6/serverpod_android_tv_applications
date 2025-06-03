@@ -5,16 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5468b549-5f6e-41af-bb3f-a853a33a297f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_application_admin/lib/core/ui/components/button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/lib/core/ui/components/button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tv_application_admin/lib/features/dashboard/presentation/pages/tv_shows_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/lib/features/dashboard/presentation/pages/tv_shows_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tv_application_admin/lib/features/dashboard/presentation/providers/tv_shows_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/lib/features/dashboard/presentation/providers/tv_shows_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_application_admin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_application_admin/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_application_admin/lib/features/dashboard/presentation/widgets/tv_shows_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_application_admin/lib/features/dashboard/presentation/widgets/tv_shows_list.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tv_applications_client/lib/src/protocol/client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_client/lib/src/protocol/client.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/lib/features/dashboard/presentation/pages/dashboard_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/lib/features/dashboard/presentation/pages/dashboard_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_client/lib/src/protocol/media.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_client/lib/src/protocol/media.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/android/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/android/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/android/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tv_applications_flutter/lib/features/dashboard/presentation/pages/tv.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/lib/features/dashboard/presentation/pages/tv.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tv_applications_flutter/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_flutter/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_flutter/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/endpoints/tv_endpoint.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/endpoints/tv_endpoint.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/endpoints/user_tv_endpoint.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/endpoints/user_tv_endpoint.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/endpoints.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/endpoints.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/media.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/media.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/protocol.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/protocol.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/protocol.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/generated/protocol.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/lib/src/models/media.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/lib/src/models/media.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/migrations/migration_registry.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/migrations/migration_registry.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv_applications_server/test/integration/test_tools/serverpod_test_tools.dart" beforeDir="false" afterPath="$PROJECT_DIR$/tv_applications_server/test/integration/test_tools/serverpod_test_tools.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
